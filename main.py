@@ -59,7 +59,8 @@ class EmailSender:
 
         if body_html_filename is not None:
             try:
-                with open(body_html_filename, 'r') as f:
+                base_name = os.path.basename(body_html_filename)
+                with open(base_name, 'r') as f:
                     body_html = f.read()
             except FileNotFoundError as e:
                 self.raise_exception("Unable to open HTML body file! Stopping...")
