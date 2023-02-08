@@ -59,14 +59,13 @@ class EmailSender:
 
         if body_html_filename is not None:
             try:
-                logging.info(body_html_filename.strip())
-                with open(body_html_filename, 'r') as f:
+                base_name = os.path.basename(body_html_filename.strip())
+                with open(base_name, 'rb') as f:
                     body_html = f.read()
-                    logging.info(body_html)
             except FileNotFoundError as e:
                 self.raise_exception("Unable to open HTML body file! Stopping...")
 
-        if body_plain is None or body_html is None:
+        if body_plain is None and body_html is None:
             self.raise_exception('BODY_PLAIN or BODY_HTML variable not set! Stopping...')
 
         msg = MIMEMultipart('alternative')
