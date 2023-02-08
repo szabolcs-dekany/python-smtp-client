@@ -59,7 +59,7 @@ class EmailSender:
 
         if body_html_filename is not None:
             try:
-                logging.info(body_html_filename)
+                logging.info(body_html_filename.strip())
                 with open(body_html_filename, 'r') as f:
                     body_html = f.read()
             except FileNotFoundError as e:
