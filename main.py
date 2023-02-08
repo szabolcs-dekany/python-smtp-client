@@ -74,10 +74,12 @@ class EmailSender:
         msg['Subject'] = subject
 
         if body_plain is not None:
+            logging.info('Adding plain text body...')
             plain_email_body = MIMEText(body_plain, 'plain', _charset='utf-8')
             msg.attach(plain_email_body)
 
         if body_html is not None:
+            logging.info('Adding HTML body...')
             html_email_body = MIMEText(body_html, 'html', _charset='utf-8')
             msg.attach(html_email_body)
 
