@@ -76,8 +76,6 @@ class EmailSender:
         part1 = MIMEText(body_plain, 'plain', _charset='utf-8')
         part2 = MIMEText(body_html, 'html', _charset='utf-8')
 
-        logging.info(body_html)
-
         msg.attach(part1)
         msg.attach(part2)
 
