@@ -73,11 +73,13 @@ class EmailSender:
         msg['TO'] = configuration.get('to_email')
         msg['Subject'] = subject
 
-        part1 = MIMEText(body_plain, 'plain', _charset='utf-8')
-        part2 = MIMEText(body_html, 'html', _charset='utf-8')
+        if body_plain is not None:
+            plain_email_body = MIMEText(body_plain, 'plain', _charset='utf-8')
+            msg.attach(plain_email_body)
 
-        msg.attach(part1)
-        msg.attach(part2)
+        if body_html is not None:
+            html_email_body = MIMEText(body_html, 'html', _charset='utf-8')
+            msg.attach(html_email_body)
 
         if configuration.get('attachments') is not None:
             self.add_attachments(msg, configuration.get('attachments').split(','))
