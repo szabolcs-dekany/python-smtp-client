@@ -62,6 +62,7 @@ class EmailSender:
                 logging.info(body_html_filename.strip())
                 with open(body_html_filename, 'r') as f:
                     body_html = f.read()
+                    logging.info(body_html)
             except FileNotFoundError as e:
                 self.raise_exception("Unable to open HTML body file! Stopping...")
 
